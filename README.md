@@ -1,4 +1,6 @@
+#Webpack开发模式和生产模式搭建
 npm init -y 初始化 package.json，生成后的文件如下：
+```
 {
   "name": "sdk",
   "version": "1.0.0",
@@ -16,7 +18,7 @@ npm init -y 初始化 package.json，生成后的文件如下：
     "webpack-dev-server": "^3.7.2"
   }
 }
-
+```
 
 
 首先安装 webpack 所需依赖
