@@ -1,4 +1,4 @@
-#Webpack开发模式和生产模式搭建
+# Webpack开发模式和生产模式搭建
 npm init -y 初始化 package.json，生成后的文件如下：
 ```
 {
@@ -205,7 +205,7 @@ module.exports = env => {
 }
 ```
 
-# (一) 编写基础配置 webpack.base.conf.js
+## (一) 编写基础配置 webpack.base.conf.js
 ```
 const path = require('path')
 const webpack = require('webpack')
@@ -290,7 +290,7 @@ module.exports = {
 }
 ```
 
-# (二) 编写开发环境配置文件 webpack.dev.conf.js
+## (二) 编写开发环境配置文件 webpack.dev.conf.js
  开发配置主要是设置跨域、开启源码调试、热更新
  ```
 const webpack = require('webpack')
@@ -350,7 +350,7 @@ const devConfig = {
 module.exports = merge(commonConfig, devConfig)
 ```
 
-# (三) 编写生产环境配置文件 webpack.prod.conf.js
+## (三) 编写生产环境配置文件 webpack.prod.conf.js
   生产配置主要是拆分代码，压缩 css
 ```
 const merge = require('webpack-merge')
