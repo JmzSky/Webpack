@@ -22,15 +22,18 @@ npm init -y 初始化 package.json，生成后的文件如下：
 
 
 首先安装 webpack 所需依赖
+```
 npm i webpack webpack-cli webpack-dev-server --save-dev
-
+```
 
 安装 babel7，因为目前主要是用 ES6 来编写代码，所以需要转译
+```
 npm i @babel/core babel-loader @babel/preset-env @babel/plugin-transform-runtime --save-dev
 npm i @babel/polyfill @babel/runtime
-
+```
 
 现在 package.json 中的依赖为：
+```
 {
   "name": "sdk",
   "version": "1.0.0",
@@ -56,50 +59,57 @@ npm i @babel/polyfill @babel/runtime
     "@babel/runtime": "^7.5.5"
   }
 }
-
+```
 
 新建 .babelrc 来配置 babel 插件，代码如下：
+```
 {
   "presets": ["@babel/preset-env"],
   "plugins": ["@babel/plugin-transform-runtime"]
 }
-
+```
 
 新建 .browserslistrc 文件配置该项目所支持的浏览器版本
-# 所支持的浏览器版本
-
+所支持的浏览器版本
+```
 > 1% # 全球使用情况统计选择的浏览器版本
 last 2 version # 每个浏览器的最后两个版本
 not ie <= 8 # 排除小于 ie8 及以下的浏览器
-
+```
 
 在开始配置 webpack.config.js 文件之前，需要注意一下，因为现在我们是有两种模式，production(生产)  和 development(开发)  模式。
 
 安装自动生成 html 依赖
+```
 npm i html-webpack-plugin html-loader clean-webpack-plugin --save-dev
-
+```
 
 安装 css/字体图标处理依赖
+```
 npm i css-loader style-loader mini-css-extract-plugin optimize-css-assets-webpack-plugin --save-dev
-
+```
 
 安装 scss 处理依赖
+```
 npm i node-sass sass-loader --save-dev
-
+```
 
 为不同内核的浏览器加上 CSS 前缀
+```
 npm install postcss-loader autoprefixer --save-dev
-
+```
 
 图片及字体处理
+```
 npm i url-loader file-loader image-webpack-loader --save-dev
-
+```
 
 第三方 js 库(自由选择)
+```
 npm i jquery
-
-
+```
 现在 package.json 为：
+```
 {
   "name": "sdk",
   "version": "1.0.0",
@@ -139,7 +149,7 @@ npm i jquery
     "@babel/runtime": "^7.5.5"
   }
 }
-
+```
 
 
 之前我们大多都是写生产模式，也就是经常说的打包，但是我们日常开发项目，用的是开发模式。
@@ -152,10 +162,12 @@ npm i jquery
 
 
 这里需要使用到一个插件，webpack-merge 用来合并配置，比如开发环境就合并开发配置 + 基础配置，生产就合并生产配置 + 基础配置
+```
 npm i webpack-merge --save-dev
-
+```
 
 先简单写个 webpack.base.conf.js 的示例代码
+```
 const merge = require('webpack-merge')
 
 const productionConfig = require('./webpack.prod.conf') // 引入生产环境配置文件
@@ -167,7 +179,7 @@ module.exports = env => {
   let config = env === 'production' ? productionConfig : developmentConfig
   return merge(baseConfig, config) // 合并 公共配置 和 环境配置
 }
-
+```
 
 引入 webpack-merge 插件来合并配置
 引入生产环境和开发环境
@@ -175,23 +187,26 @@ module.exports = env => {
 导出合并后的配置文件
 
 在代码中区分不同环境：
+```
 module.exports = env => {
   let config = env === 'production' ? productionConfig : developmentConfig
   return merge(baseConfig, config) // 合并 公共配置 和 环境配置
 }
-
+```
 
 这里的 env 在 package.json 中进行配置，修改 scripts，添加 "dev" 和 "build" 命令
 注意，这里有个 --env 字段，与 webpack.base.conf.js 中的 env 是联动的，告诉它当前是什么环境，然后合并成什么环境
+```
 {
   "scripts": {
     "dev": "webpack-dev-server --env development --open --config build/webpack.base.conf.js",
     "build": "webpack --env production --config build/webpack.base.conf.js"
   }
 }
+```
 
-
-(一) 编写基础配置 webpack.base.conf.js
+# (一) 编写基础配置 webpack.base.conf.js
+```
 const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -273,10 +288,11 @@ module.exports = {
   ],
   performance: false
 }
+```
 
-
-(二) 编写开发环境配置文件 webpack.dev.conf.js
- **开发配置主要是设置跨域、开启源码调试、热更新**
+# (二) 编写开发环境配置文件 webpack.dev.conf.js
+ 开发配置主要是设置跨域、开启源码调试、热更新
+ ```
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const commonConfig = require('./webpack.base.conf.js')
@@ -332,10 +348,11 @@ const devConfig = {
 }
 
 module.exports = merge(commonConfig, devConfig)
+```
 
-
-(三) 编写生产环境配置文件 webpack.prod.conf.js
-**生产配置主要是拆分代码，压缩 css**
+# (三) 编写生产环境配置文件 webpack.prod.conf.js
+  生产配置主要是拆分代码，压缩 css
+```
 const merge = require('webpack-merge')
 const commonConfig = require('./webpack.base.conf.js')
 
@@ -401,3 +418,4 @@ const prodConfig = {
 }
 
 module.exports = merge(commonConfig, prodConfig)
+```
