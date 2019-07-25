@@ -15,7 +15,23 @@ webpack是模块化管理工具，使用webpack可以对模块进行压缩、预
 7.开发模式友好：webpack为开发模式也提供了很多辅助功能。比如SourceMap、热更新等。<br>
 8.使用场景多：webpack不仅适用于web应用场景，也适用于Webworkers、Node.js场景<br>
 
+### 核心概念
+Webpack具有四个核心的概念，分别是Entry（入口）、Output（输出）、loader和Plugins（插件）。接下来详细介绍这四个核心概念。
 
+### 1.Entry
+Entry是Webpack的入口起点指示，它指示webpack应该从哪个模块开始着手，来作为其构建内部依赖图的开始。可以在配置文件（webpack.config.js）中配置entry属性来指定一个或多个入口点，默认为./src（webpack 4开始引入默认值）。
+
+### 2.Output
+Output属性告诉webpack在哪里输出它所创建的bundles，也可指定bundles的名称，默认位置为./dist。整个应用结构都会被编译到指定的输出文件夹中去，最基本的属性包括filename（文件名）和path（输出路径）。
+
+### 3.Loaders
+loader可以理解为webpack的编译器，它使得webpack可以处理一些非JavaScript文件，比如png、csv、xml、css、json等各种类型的文件，使用合适的loader可以让JavaScript的import导入非JavaScript模块。JavaScript只认为JavaScript文件是模块，而webpack的设计思想即万物皆模块，为了使得webpack能够认识其他“模块”，所以需要loader这个“编译器”。
+
+### 4.Plugins
+loader用于转换非JavaScript类型的文件，而插件可以用于执行范围更广的任务，包括打包、优化、压缩、搭建服务器等等，功能十分强大。要是用一个插件，一般是先使用npm包管理器进行安装，然后在配置文件中引入，最后将其实例化后传递给plugins数组属性。
+
+
+## 搭建webpack环境
 npm init -y 初始化 package.json，生成后的文件如下：
 ```
 {
