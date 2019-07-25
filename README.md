@@ -6,14 +6,14 @@ webpack是模块化管理工具，使用webpack可以对模块进行压缩、预
 
 ### webpack 重要特征
 
-插件化：webpack本身非常灵活，提供了丰富的插件接口。基于这些接口，webpack开发了很多插件作为内置功能。
-速度快：webpack使用异步IO以及多级缓存机制。所以webpack的速度是很快的，尤其是增量更新。
-丰富的Loaders：loaders用来对文件做预处理。这样webpack就可以打包任何静态文件。
-高适配性：webpack同时支持AMD/CommonJs/ES6模块方案。webpack会静态解析你的代码，自动帮你管理他们的依赖关系。此外，webpack对第三方库的兼容性很好。
-代码拆分：webpack可以将你的代码分片，从而实现按需打包。这种机制可以保证页面只加载需要的JS代码，减少首次请求的时间。
-优化：webpack提供了很多优化机制来减少打包输出的文件大小，不仅如此，它还提供了hash机制，来解决浏览器缓存问题。
-开发模式友好：webpack为开发模式也提供了很多辅助功能。比如SourceMap、热更新等。
-使用场景多：webpack不仅适用于web应用场景，也适用于Webworkers、Node.js场景
+插件化：webpack本身非常灵活，提供了丰富的插件接口。基于这些接口，webpack开发了很多插件作为内置功能。<br>
+速度快：webpack使用异步IO以及多级缓存机制。所以webpack的速度是很快的，尤其是增量更新。<br>
+丰富的Loaders：loaders用来对文件做预处理。这样webpack就可以打包任何静态文件。<br>
+高适配性：webpack同时支持AMD/CommonJs/ES6模块方案。webpack会静态解析你的代码，自动帮你管理他们的依赖关系。此外，webpack对第三方库的兼容性很好。<br>
+代码拆分：webpack可以将你的代码分片，从而实现按需打包。这种机制可以保证页面只加载需要的JS代码，减少首次请求的时间。<br>
+优化：webpack提供了很多优化机制来减少打包输出的文件大小，不仅如此，它还提供了hash机制，来解决浏览器缓存问题。<br>
+开发模式友好：webpack为开发模式也提供了很多辅助功能。比如SourceMap、热更新等。<br>
+使用场景多：webpack不仅适用于web应用场景，也适用于Webworkers、Node.js场景<br>
 
 
 npm init -y 初始化 package.json，生成后的文件如下：
